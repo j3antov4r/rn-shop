@@ -1,25 +1,42 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, Button, 
+        TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native'
 import COLORS from '../../constants/colors';
 const ProductItem = (props) => {
+    let TouchableCmp = TouchableOpacity;
+    if(Platform.OS === 'android' && Platform.Version >=21){
+        TouchableCmp = TouchableNativeFeedback;
+    }
     return (
-        <View style={styles.itemBox}>
-            <View style={styles.imgBox}>
-                <Image source={{uri: props.image}} style={styles.img}/>
-            </View>
-            <View style={styles.detBox}>
-                <Text style={styles.title}>{props.title}</Text>
-                <Text style={styles.price}>{props.price.toFixed(2)}</Text>
-            </View>
-            <View style={styles.actBox}>
-                <Button title="View Details" color={COLORS.primary} onPress={props.onViewDetail} style={styles.btn}/>
-                <Button title="Add to Cart" color={COLORS.primary} onPress={props.onAddToCart}/>
-            </View>
+       <View style={styles.container}>
+            <TouchableCmp onPress={props.onViewDetail} useForeground>
+                <View>
+                <View style={styles.itemBox}>
+                    <View style={styles.imgBox}>
+                        <Image source={{uri: props.image}} style={styles.img}/>
+                    </View>
+                    <View style={styles.detBox}>
+                        <Text style={styles.title}>{props.title}</Text>
+                        <Text style={styles.price}>{props.price.toFixed(2)}</Text>
+                    </View>
+                    <View style={styles.actBox}>
+                        <Button title="View Details" color={COLORS.primary} onPress={props.onViewDetail} style={styles.btn}/>
+                        <Button title="Add to Cart" color={COLORS.primary} onPress={props.onAddToCart}/>
+                    </View>
+                </View>
+                </View>
+            </TouchableCmp>
         </View>
+        
+        
     );
 }
 
 const styles = StyleSheet.create({
+    container:{
+        borderRadius: 10,
+        overflow: "hidden"
+    },
     itemBox: {
         shadowColor: 'black',
         shadowOffset: { width: 0, height: 2 },
@@ -29,7 +46,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'white',
         height: 300,
-        margin: 20
+        margin: 20,
+        
 
     }, 
     imgBox:{

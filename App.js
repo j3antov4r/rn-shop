@@ -5,13 +5,17 @@ import { Provider } from 'react-redux';
 import { useScreens } from 'react-native-screens';
 
 import productsReducer from './store/reducers/products';
+import cartReducer from './store/reducers/cart';
 import ShopNavigator from './navigation/ShopNavigator';
 
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 const rootReducer = combineReducers({
-    prodReducer: productsReducer
+    prodReducer: productsReducer,
+    cartReducer: cartReducer
 })
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 useScreens();
 
