@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../actions/cart";
+import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/cart";
 import CartItem from "../../models/cartitem";
 
 
@@ -13,7 +13,7 @@ export default (state = initialState, action) =>{
     switch(action.type){
         case ADD_TO_CART:
             const addedItem = action.product;
-            console.log('addedItem', addedItem);
+            //console.log('addedItem', addedItem);
             
             let qty=1;
             if(state.cartItems[addedItem.id]){
@@ -27,8 +27,24 @@ export default (state = initialState, action) =>{
                 totalAmount: state.totalAmount + addedItem.price
             }
             break;
+        case REMOVE_FROM_CART:
+            let upCartItem = action.product;
+            //console.log('REMOVE FROM CART cartItem', upCartItem);
+            let updAllItems = { ...state.cartItems };
+            if(upCartItem.quantity > 1){
+                upCartItem.quantity--;
+                updAllItems={...state.cartItems, [upCartItem.product.id]:upCartItem}
+            }else{
+                delete updAllItems[upCartItem.product.id];
+            }
+            
+            return myState ={
+                cartItems: { ...updAllItems },
+                totalAmount: state.totalAmount - upCartItem.product.price
+            }
+            break;
         default:
-                console.log('CartReducer DEFAULT', state);
+                //console.log('CartReducer DEFAULT', state);
                 return state;
     }
     

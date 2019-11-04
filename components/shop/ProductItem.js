@@ -20,7 +20,7 @@ const ProductItem = (props) => {
                         <Text style={styles.price}>{props.price.toFixed(2)}</Text>
                     </View>
                     <View style={styles.actBox}>
-                        <Button title="View Details" color={COLORS.primary} onPress={props.onViewDetail} style={styles.btn}/>
+                        <Button title="View Details" color={COLORS.secondary} onPress={props.onViewDetail} style={styles.btn}/>
                         <Button title="Add to Cart" color={COLORS.primary} onPress={props.onAddToCart}/>
                     </View>
                 </View>
