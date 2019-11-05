@@ -6,11 +6,13 @@ import ProductsOverviewScreen from '../screens/shop/ProductsOverwiewScreen';
 import COLORS from '../constants/colors';
 import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
 import CartScreen from '../screens/shop/CartScreen';
+import OrderScreen from '../screens/shop/OrderScreen';
 
 const ShopNavigator = createStackNavigator({
     ProductsOverview: ProductsOverviewScreen,
     ProductDetail: ProductDetailScreen,
-    CartSummary: CartScreen
+    CartSummary: CartScreen,
+    OrderSummary: OrderScreen
 },{
     defaultNavigationOptions: {
         headerStyle: {

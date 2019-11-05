@@ -6,17 +6,19 @@ import { useScreens } from 'react-native-screens';
 
 import productsReducer from './store/reducers/products';
 import cartReducer from './store/reducers/cart';
+import orderReducer from './store/reducers/orders';
 import ShopNavigator from './navigation/ShopNavigator';
 
-import { composeWithDevTools } from 'redux-devtools-extension';
+//import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
     prodReducer: productsReducer,
-    cartReducer: cartReducer
+    cartReducer: cartReducer,
+    orderReducer: orderReducer
 })
 
-const store = createStore(rootReducer, composeWithDevTools());
-
+//const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer);
 useScreens();
 
 export default function App() {
