@@ -42,6 +42,17 @@ const ProductsOverwiewScreen = (props) => {
 ProductsOverwiewScreen.navigationOptions =(navData)=>{
     return {
         headerTitle: 'All Products'  ,
+        headerLeft:  (
+            <HeaderButtons HeaderButtonComponent={CartHeaderButton}>
+                                <Item title="Menu" 
+                                    iconName={Platform.OS === "android" ? 'md-menu':'ios-menu'}
+                                    onPress={()=>{
+                                        console.log('MenuButton', 'Pressed');
+                                        navData.navigation.toggleDrawer();
+                                        }}/>
+                        </HeaderButtons>
+
+        ),
         headerRight: (  <HeaderButtons HeaderButtonComponent={CartHeaderButton}>
                                 <Item title="Cart" 
                                     iconName={Platform.OS === "android" ? 'md-cart':'ios-cart'}
