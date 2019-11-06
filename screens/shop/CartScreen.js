@@ -23,7 +23,7 @@ const CartScreen = (props) => {
                     onPress={()=>{
                         console.log('Place Order', myCart);
                         dispatch(orderActions.addOrder(myCart, cartTotal));
-                        props.navigation.navigate('OrderSummary');
+                        //props.navigation.navigate('OrderSummary');
                     }}
                     color={COLORS.accent}
                     disabled={DATA.length === 0}/>
