@@ -23,11 +23,11 @@ export default (state = initialState, action) =>{
             }
             const myCartItem = new CartItem(addedItem, qty);
             
-            return  myState = {
+            return {
                 cartItems: { ...state.cartItems, [addedItem.id]: myCartItem },
                 totalAmount: state.totalAmount + addedItem.price
             }
-            break;
+            
         case REMOVE_FROM_CART:
             let upCartItem = action.product;
             //console.log('REMOVE FROM CART cartItem', upCartItem);
@@ -39,11 +39,11 @@ export default (state = initialState, action) =>{
                 delete updAllItems[upCartItem.product.id];
             }
             
-            return myState ={
+            return {
                 cartItems: { ...updAllItems },
                 totalAmount: state.totalAmount - upCartItem.product.price
             }
-            break;
+            
         case ADD_ORDER:
             return initialState;
         default:
